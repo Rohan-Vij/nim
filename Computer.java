@@ -3,7 +3,18 @@ public class Computer extends Player {
         super("Computer");
     }
 
-    public int algorithim(int pileSize) {
-        return 0;
+    public int algorithm(int pileSize) {
+        if (pileSize <= 1) {
+            return 1;
+        }
+
+        int bitLength = Integer.toBinaryString(pileSize).length();
+        for (int i = 1; i < pileSize; i++) {
+            int newPileSize = pileSize - i;
+            if (Integer.bitCount(newPileSize ^ (newPileSize - 1)) < bitLength) {
+                return i;
+            }
+        }
+        return 1;
     }
 }
