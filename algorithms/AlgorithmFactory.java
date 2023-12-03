@@ -7,7 +7,9 @@ public class AlgorithmFactory {
     private static final Map<Integer, IAlgorithm> algorithms = new HashMap<>();
 
     static {
-        algorithms.put(1, new Binary());
+        algorithms.put(1, new Binary()); // technically adding singleton classes??? idk
+        algorithms.put(2, new RemoveMax());
+        algorithms.put(3, new Random());
     }
 
     public static IAlgorithm getAlgorithm(int id) {
