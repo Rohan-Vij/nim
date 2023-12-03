@@ -1,20 +1,14 @@
+import algorithms.IAlgorithm;
+
 public class Computer extends Player {
-    public Computer() {
-        super("Computer");
+    private IAlgorithm algorithm;
+
+    public Computer(int id, IAlgorithm algorithmChoice) {
+        super("Computer" + id);
+        this.algorithm = algorithmChoice;
     }
 
-    public int algorithm(int pileSize) {
-        if (pileSize <= 1) {
-            return 1;
-        }
-
-        int bitLength = Integer.toBinaryString(pileSize).length();
-        for (int i = 1; i < pileSize; i++) {
-            int newPileSize = pileSize - i;
-            if (Integer.bitCount(newPileSize ^ (newPileSize - 1)) < bitLength) {
-                return i;
-            }
-        }
-        return 1;
+    public int execute(int pileSize) {
+        return this.algorithm.execute(pileSize);
     }
 }
