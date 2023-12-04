@@ -10,6 +10,7 @@ public class AlgorithmFactory {
         algorithms.put(1, new Binary()); // technically adding singleton classes??? idk
         algorithms.put(2, new RemoveMax());
         algorithms.put(3, new Random());
+        algorithms.put(4, new Logic());
     }
 
     public static IAlgorithm getAlgorithm(int id) {
@@ -25,5 +26,14 @@ public class AlgorithmFactory {
             algorithmNames.put(entry.getKey(), entry.getValue().getClass().getSimpleName());
         }
         return algorithmNames;
+    }
+
+    public static IAlgorithm getAlgorithmByName(String name) {
+        for (IAlgorithm algorithm : algorithms.values()) {
+            if (algorithm.getClass().getSimpleName().equalsIgnoreCase(name)) {
+                return algorithm;
+            }
+        }
+        throw new IllegalArgumentException("Unknown Algorithm Name");
     }
 }

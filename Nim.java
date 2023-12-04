@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Random;
 
 public class Nim {
-    private Player player1;
-    private Player player2;
+    protected Player player1;
+    protected Player player2;
     private Pile pile;
     private int turn;
     private Scanner scanner;
@@ -26,11 +26,10 @@ public class Nim {
         this.random = new Random();
         this.pile = new Pile(random.nextInt(31) + 20); // Random pile size between 20 and 50
         this.turn = (int)(Math.random()*2); // Random int between 0 and 1 to randomize who starts the game
-        System.out.println(this.turn);
         setupPlayers();
     }
 
-    private void setupPlayers() {
+    protected void setupPlayers() {
         this.player1 = setupPlayer(1);
         this.player2 = setupPlayer(2);
     }

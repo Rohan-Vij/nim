@@ -8,6 +8,11 @@ public class Computer extends Player {
         this.algorithm = algorithmChoice;
     }
 
+    public Computer(String name, IAlgorithm algorithmChoice) {
+        super(name);
+        this.algorithm = algorithmChoice;
+    }
+
     public int execute(int pileSize) {
         return this.algorithm.execute(pileSize);
     }
