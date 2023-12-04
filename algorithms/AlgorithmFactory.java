@@ -21,7 +21,7 @@ public class AlgorithmFactory {
 
     public static Map<Integer, String> getAlgorithmList() {
         Map<Integer, String> algorithmNames = new HashMap<>();
-        for (Map.Entry<Integer, IAlgorithm> entry : algorithms.entrySet()) {
+        for (Map.Entry<Integer, IAlgorithm> entry : algorithms.entrySet()) { // make hashmap a set to iterate
             algorithmNames.put(entry.getKey(), entry.getValue().getClass().getSimpleName());
         }
         return algorithmNames;
