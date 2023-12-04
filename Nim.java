@@ -25,7 +25,8 @@ public class Nim {
         this.scanner = new Scanner(System.in);
         this.random = new Random();
         this.pile = new Pile(random.nextInt(31) + 20); // Random pile size between 20 and 50
-        this.turn = (int) Math.round(Math.random()); // Random int between 0 and 1 to randomize who starts the game
+        this.turn = (int)(Math.random()*2); // Random int between 0 and 1 to randomize who starts the game
+        System.out.println(this.turn);
         setupPlayers();
     }
 
@@ -99,6 +100,7 @@ public class Nim {
         }
     
         // Announce the winner
+        changeTurn();
         Player winningPlayer = this.turn == 1 ? this.player2 : this.player1;
         System.out.println("\n" + ANSI_BOLD + ANSI_BLUE + "***" + winningPlayer.getName() + " wins!***" + ANSI_RESET);
         scanner.close();
