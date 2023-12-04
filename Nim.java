@@ -5,6 +5,8 @@ import algorithms.IAlgorithm;
 
 import java.util.Map;
 import java.util.Random;
+import java.sql.Array;
+import java.util.ArrayList;
 
 public class Nim {
     protected Player player1;
@@ -69,8 +71,15 @@ public class Nim {
         this.turn ^= 1; // Bitwise XOR to change turn
     }
 
-    public void play() {
+    public ArrayList<Object> play() {
+        ArrayList<Object> information = new ArrayList<Object>();
+
         System.out.println(ANSI_RED + "Starting the game! " + ANSI_BOLD + ANSI_RED + (this.turn == 1 ? this.player1 : this.player2).getName() + ANSI_RESET + ANSI_RED + " goes first!" + ANSI_RESET);
+
+        information.add(this.pile.getSize());
+
+        Player starting = this.turn == 1 ? this.player1 : this.player2;
+        information.add(starting.getName());
 
         while (this.pile.getSize() > 0) {
             Player currentPlayer = this.turn == 1 ? this.player1 : this.player2;
@@ -101,7 +110,11 @@ public class Nim {
         // Announce the winner
         changeTurn();
         Player winningPlayer = this.turn == 1 ? this.player2 : this.player1;
+        information.add(winningPlayer.getName());
+
         System.out.println("\n" + ANSI_BOLD + ANSI_BLUE + "***" + winningPlayer.getName() + " wins!***" + ANSI_RESET);
         scanner.close();
+
+        return information;
     }
 }

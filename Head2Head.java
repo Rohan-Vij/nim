@@ -1,31 +1,29 @@
-import java.util.List;
-import java.util.ArrayList;
-
 import algorithms.AlgorithmFactory;
 import algorithms.IAlgorithm;
 
 public class Head2Head extends Nim {
     private String algorithm1;
     private String algorithm2;
-    private List<String> gameResults;
     
     public Head2Head(String algorithm1, String algorithm2) {
         super(); 
         this.algorithm1 = algorithm1;
         this.algorithm2 = algorithm2;
-        this.gameResults = new ArrayList<String>();
         setupPlayers();
     }
 
     @Override
     protected void setupPlayers() {
+        if (algorithm1 == null && algorithm1 == null) {
+            return;
+        }
         this.player1 = setupComputerPlayer(1, algorithm1);
         this.player2 = setupComputerPlayer(2, algorithm2);
     }
 
     private Player setupComputerPlayer(int playerNumber, String algorithmName) {
         IAlgorithm algorithm = AlgorithmFactory.getAlgorithmByName(algorithmName);
-        return new Computer("Computer " + playerNumber + " - " + algorithmName, algorithm);
+        return new Computer("Computer" + playerNumber + "-" + algorithmName, algorithm);
     }
 
     public static void main(String[] args) {
@@ -42,6 +40,6 @@ public class Head2Head extends Nim {
         }
 
         Head2Head game = new Head2Head(algorithm1, algorithm2);
-        game.play();
+        System.out.println(game.play());
     }
 }
